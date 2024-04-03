@@ -4,41 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Gian Lucca">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
   <title>Galactic Census</title>
 </head>
-<body>
+<body class="flex flex-col bg-cover bg-no-repeat" style="background-image: url('https://wallpapercave.com/wp/wp8179249.jpg')">
+  
+  <section id="search-box" class="mx-auto bg-gray-900/90 rounded-xl mt-8">
+    <section id="title" class="flex flex-col items-center mt-4">
+      <h1 class="text-center text-5xl text-yellow-700">Galactic Census</h1>
+      <h3 class="text-center text-lg text-gray-400">May the Census guide you.</h3>
+    </section>
+  
+    <section id="planet-selector" class="flex flex-col items-center my-4 mx-4">
+      <h2 class="text-xl font-bold text-gray-300">You can start by typing the name of a planet</h2>
+  
+      <div class="flex flex-row">
+        <input type="text" id="search-input" placeholder="Planet Earth" class="border-2 border-gray-300 rounded-md p-1 m-2">
+        <button id="search-button" onclick="searchPlanet()" class="bg-slate-700 flex flex-row text-white rounded-md p-2 m-2 shadow-lg hover:bg-slate-800 hover:shadow-xl transition-all duration-300 ease-in-out">
+          <p class="mr-1">Search</p>
+          <span class="material-symbols-outlined">
+            search
+          </span>
+        </button>
+      </div>
+  
+      <p class="text-center text-gray-300 mt-4">You can also select one of the following planets:</p>
+      <ul id="planet-list" class="flex flex-row items-center"></ul>
+    </section>
+  </section>
 
-  <h1>Galactic Census</h1>
+  <section id="planet-information" class="mx-auto bg-gray-900/90 rounded-xl mt-8 p-8 hidden">
+    <div id="planet-data" class="flex flex-col items-center my-2 mx-2 text-white">
+      <h2 id="planet-name" class="text-3xl font-bold text-yellow-700">Choose a planet!</h2>
+      <div class="flex flex-row items-center gap-6 mt-4">
+        <div class="flex flex-col items-center text-center">
+          <p id="planet-climate" class="text-lg text-gray-400">Climate: </p>
+          <span id="climate"></span>
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <p id="planet-population" class="text-lg text-gray-400">Estimated population: </p>
+          <span id="population"></span>
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <p id="planet-terrain" class="text-lg text-gray-400">Terrain: </p>
+          <span id="terrain"></span>
+        </div>
+      </div>
+    </div>
 
-  <div id="planet-selector">
-    <h2>Planet List</h2>
-    <ul id="planet-list"></ul>
-
-    <input type="text" id="search-input" placeholder="Search for a planet">
-    <button id="search-button" onclick="searchPlanet()">Search</button>
-  </div>
-
-  <div id="planet-info">
-    <h2>Planet</h2>
-    <p>Planet Name: <span id="planet-name"></span></p>
-    <p>Population: <span id="population"></span></p>
-    <p>Climate: <span id="climate"></span></p>
-    <p>Terrain: <span id="terrain"></span></p>
-  </div>
-
-  <div id="famous-habitants">
-    <h2>Famous Habitants</h2>
-    <table id="famous-habitants-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Birth Year</th>
-        </tr>
-      </thead>
-      <tbody id="famous-habitants-list"></tbody>
-    </table>
-  </div>
+    <div id="famous-habitants">
+      <h2 class="text-xl text-gray-200 mt-8 text-center font-bold">Famous habitants from this planet</h2>
+      <table id="famous-habitants-table" class="table-auto text-white mx-auto mt-4 bg-gray-700/50 rounded-xl">
+        <thead>
+          <tr class="bg-gray-800/50">
+            <th class="p-2 text-center">Name</th>
+            <th class="p-2 text-center">Gender</th>
+            <th class="p-2 text-center">Birth Year</th>
+          </tr>
+        </thead>
+          <tbody id="famous-habitants-list"></tbody>
+      </table>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>

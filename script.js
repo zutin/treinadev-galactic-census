@@ -12,16 +12,20 @@ function createButton(planet){
 
   let button = document.createElement('button');
   button.innerHTML = planet.name;
+  button.className = 'bg-slate-700 text-white rounded-md p-2 m-2 shadow-lg hover:bg-slate-800 hover:shadow-xl transition-all duration-300 ease-in-out';
   button.onclick = () => fillPlanetInfo(planet);
 
   planetList.appendChild(button);
 }
 
 function fillPlanetInfo(planet){
+  let planetInfo = document.getElementById('planet-information');
   let name = document.getElementById('planet-name');
   let climate = document.getElementById('climate');
   let population = document.getElementById('population');
   let terrain = document.getElementById('terrain');
+
+  planetInfo.classList.remove('hidden');
 
   name.innerHTML = planet.name;
   climate.innerHTML = planet.climate;
@@ -61,9 +65,9 @@ function fillFamousHabitants(planet){
         let tr = document.createElement('tr');
         
         tr.innerHTML = `
-          <td>${data.name}</td>
-          <td>${data.gender}</td>
-          <td>${data.birth_year}</td>
+          <td class="p-2 text-center">${data.name}</td>
+          <td class="p-2 text-center">${data.gender}</td>
+          <td class="p-2 text-center">${data.birth_year}</td>
           `
 
         famousHabitantsList.appendChild(tr);
