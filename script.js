@@ -3,8 +3,15 @@ async function getPlanets(){
   let planets = await req.json();
 
   planets.results.forEach(planet => {
-    console.log(planet);
+    createButton(planet);
   })
+}
+
+function createButton(planet){
+  let button = document.createElement('button');
+  button.innerHTML = planet.name;
+
+  document.body.appendChild(button);
 }
 
 getPlanets();
