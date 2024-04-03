@@ -29,4 +29,20 @@ function fillPlanetInfo(planet){
   terrain.innerHTML = planet.terrain;
 }
 
+function searchPlanet(){
+  let input = document.getElementById('search-input').value;
+
+  let req = fetch(`https://swapi.dev/api/planets/?search=${input}`);
+
+  req.then(res => res.json())
+    .then(data => {
+      let planet = data.results[0];
+
+      if (!planet) return alert(`Planet "${input}" not found. Did you spell it correctly?`);
+
+      fillPlanetInfo(planet);
+    })
+    .catch(err => console.log(err));
+}
+
 getPlanets();
