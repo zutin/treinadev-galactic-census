@@ -27,6 +27,8 @@ function fillPlanetInfo(planet){
   climate.innerHTML = planet.climate;
   population.innerHTML = planet.population;
   terrain.innerHTML = planet.terrain;
+
+  fillFamousHabitants(planet);
 }
 
 function searchPlanet(){
@@ -43,6 +45,31 @@ function searchPlanet(){
       fillPlanetInfo(planet);
     })
     .catch(err => console.log(err));
+}
+
+function fillFamousHabitants(planet){
+  let residents = planet.residents;
+  let famousHabitantsList = document.getElementById('famous-habitants-list');
+
+  famousHabitantsList.innerHTML = '';
+
+  residents.forEach(resident => {
+    let req = fetch(`${resident}`);
+
+    req.then(res => res.json())
+      .then(data => {
+        let tr = document.createElement('tr');
+        
+        tr.innerHTML = `
+          <td>${data.name}</td>
+          <td>${data.gender}</td>
+          <td>${data.birth_year}</td>
+          `
+
+        famousHabitantsList.appendChild(tr);
+      })
+      .catch(err => console.log(err));
+  });
 }
 
 getPlanets();
